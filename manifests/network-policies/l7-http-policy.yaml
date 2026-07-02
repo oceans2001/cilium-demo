@@ -1,4 +1,4 @@
-apiVersion: cilium.io/v1
+apiVersion: cilium.io/v2
 kind: CiliumNetworkPolicy
 metadata:
   name: backend-l7-policy
