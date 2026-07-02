@@ -1,5 +1,6 @@
-# Tunnel mode: VXLAN overlay (no additional routing needed)
-tunnel: vxlan
+# Routing mode: VXLAN overlay (replaces deprecated 'tunnel' option since v1.15)
+routingMode: tunnel
+tunnelProtocol: vxlan
 
 # Replace kube-proxy entirely with eBPF
 kubeProxyReplacement: true
@@ -20,7 +21,7 @@ hubble:
       - icmp
       - http
 
-# eBPF host routing
+# eBPF masquerade
 bpf:
   masquerade: true
 
