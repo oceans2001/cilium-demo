@@ -1,0 +1,29 @@
+# Tunnel mode: VXLAN overlay (no additional routing needed)
+tunnel: vxlan
+
+# Replace kube-proxy entirely with eBPF
+kubeProxyReplacement: true
+
+# Hubble - network observability
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  metrics:
+    enabled:
+      - dns
+      - drop
+      - tcp
+      - flow
+      - icmp
+      - http
+
+# eBPF host routing
+bpf:
+  masquerade: true
+
+# Required for Kind
+k8sServiceHost: cilium-demo-control-plane
+k8sServicePort: 6443

@@ -1,0 +1,23 @@
+apiVersion: cilium.io/v1
+kind: CiliumNetworkPolicy
+metadata:
+  name: backend-l7-policy
+  namespace: cilium-demo
+spec:
+  endpointSelector:
+    matchLabels:
+      app: backend
+  ingress:
+  - fromEndpoints:
+    - matchLabels:
+        app: frontend
+    toPorts:
+    - ports:
+      - port: "80"
+        protocol: TCP
+      rules:
+        http:
+        - method: "GET"
+          path: "/get"
+        - method: "GET"
+          path: "/headers"
