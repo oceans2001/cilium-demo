@@ -88,6 +88,18 @@ Port-forwards Hubble UI to `http://localhost:12000`. Keep this terminal open and
 
 Run the following in a **separate terminal** while Hubble UI is open.
 
+### VXLAN overlay
+
+The demo app is spread across two worker nodes — `backend` runs on both `cilium-demo-worker` and `cilium-demo-worker2`. Pod-to-pod traffic between nodes is automatically encapsulated in VXLAN by Cilium.
+
+To verify:
+
+```bash
+kubectl get pods -n cilium-demo -o wide
+```
+
+You will see pods on different nodes communicating seamlessly — without any additional routing configuration. Cilium handles the encapsulation transparently via VXLAN tunnels (UDP 8472) between nodes.
+
 ### Traffic
 
 ```bash
